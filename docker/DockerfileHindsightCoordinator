@@ -1,0 +1,15 @@
+FROM golang:1.18.1-buster AS build
+
+RUN git clone https://gitlab.mpi-sws.org/cld/tracing/hindsight.git /root/hindsight
+WORKDIR /root/hindsight
+RUN cd client &&\
+    make &&\
+    make install
+RUN cd agent &&\
+    go build cmd/coordinator/main.go &&\
+    mv main /hindsight_coordinator
+
+# Todo: more configuration
+ENTRYPOINT ["/hindsight_coordinator", "-out", "breadcrumbs"]
+# to access the generated traces: 
+#   -v ${PWD}/breadcrumbs:/root/hindsight/breadcrumbs

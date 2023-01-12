@@ -1,0 +1,77 @@
+{
+  "services" : [
+    {
+        "name": "service1",
+        "apis": [
+            {
+                "name": "api1",
+                "exec": 5,
+                "children": [
+                    {
+                        "service": "service2",
+                        "api": "api1",
+                        "probability": 50
+                    },
+                    {
+                        "service": "service2",
+                        "api": "api1",
+                        "probability": 50
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "service2",
+        "apis": [
+            {
+                "name": "api1",
+                "exec": 5,
+                "children": [
+                    {
+                        "service": "service3",
+                        "api": "api1",
+                        "probability": 50
+                    },
+                    {
+                        "service": "service3",
+                        "api": "api1",
+                        "probability": 50
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "service3",
+        "apis": [
+            {
+                "name": "api1",
+                "exec": 5,
+                "children": [
+                    {
+                        "service": "service4",
+                        "api": "api1",
+                        "probability": 50
+                    },
+                    {
+                        "service": "service4",
+                        "api": "api1",
+                        "probability": 50
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "service4",
+        "apis": [
+            {
+                "name": "api1",
+                "exec": 5,
+                "children": []
+            }
+        ]
+    }
+  ]
+}

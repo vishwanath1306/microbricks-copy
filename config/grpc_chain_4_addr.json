@@ -1,0 +1,32 @@
+{
+    "addresses" : [
+        {
+            "name": "service1",
+            "deploy_addr": "0.0.0.0",
+            "hostname": "pinky10",
+            "port": "50050",
+            "agent_port": "5050"
+        },
+        {
+            "name": "service2",
+            "deploy_addr": "0.0.0.0",
+            "hostname": "pinky10",
+            "port": "50051",
+            "agent_port": "5051"
+        },
+        {
+            "name": "service3",
+            "deploy_addr": "0.0.0.0",
+            "hostname": "pinky11",
+            "port": "50052",
+            "agent_port": "5052"
+        },
+        {
+            "name": "service4",
+            "deploy_addr": "0.0.0.0",
+            "hostname": "pinky11",
+            "port": "50053",
+            "agent_port": "5053"
+        }
+    ]
+}

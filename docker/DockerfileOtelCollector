@@ -1,0 +1,11 @@
+# FROM ubuntu:20.04
+FROM golang:1.18.1-buster AS build
+
+RUN git clone -b release/v0.48.x https://github.com/open-telemetry/opentelemetry-collector-contrib /root/otel_collector
+WORKDIR /root/otel_collector
+RUN go get -d ./...
+RUN make otelcontribcol-linux_amd64 -j &&\
+    mv bin/otelcontribcol_linux_amd64 /otelcontribcol
+
+# mount config file on /otel_config.yaml
+ENTRYPOINT ["/otelcontribcol", "--config", "/config/otel_config.yaml"]

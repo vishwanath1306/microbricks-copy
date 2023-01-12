@@ -1,0 +1,14 @@
+{
+  "services" : [
+      {
+          "name": "service1",
+          "apis": [
+              {
+                  "name": "api1",
+                  "exec": 1,
+                  "children": []
+              }
+          ]
+      }
+  ]
+}

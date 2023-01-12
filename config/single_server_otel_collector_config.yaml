@@ -1,0 +1,58 @@
+receivers:
+  jaeger:
+    protocols:
+      thrift_compact:
+        endpoint: 0.0.0.0:6832
+
+processors:
+  tail_sampling:
+    # same as event horizon in Hindsight paper
+    decision_wait: 1s
+    num_traces: 10000000
+    # expected_new_traces_per_sec: 10
+    policies: [
+        # current implementation is OR combination
+        # the trace will get sampled if any policy is triggered
+        { name: always_sample, type: always_sample },
+        # { name: latency, type: latency, latency: { threshold_ms: 100 } },
+        # {
+        #   name: probabilistic,
+        #   type: probabilistic,
+        #   probabilistic: { sampling_percentage: 0.1 },
+        # },
+        # {
+        #   name: status_code,
+        #   type: status_code,
+        #   status_code: { status_codes: [ERROR, UNSET] },
+        # },
+        # {
+        #   # this one is not well defined
+        #   name: rate_limiting,
+        #   type: rate_limiting,
+        #   rate_limiting: { spans_per_second: 35 },
+        # },
+    # https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/6910
+    # AND policy will be merged soon, will keep an eye on the progress
+    # the trace will get sampled if all policies are triggered
+      ]
+
+exporters:
+  file:
+    path: ./gateway.json
+
+  logging:
+    loglevel: info
+    # number of messages initially logged each second.
+    sampling_initial: 5
+    # sampling rate after the initial messages are logged (every Mth message is logged)
+    sampling_thereafter: 5
+
+  jaeger_thrift:
+    endpoint: localhost:6900
+
+service:
+  pipelines:
+    traces:
+      receivers: [jaeger]
+      processors: [tail_sampling]
+      exporters: [file, logging]

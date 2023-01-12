@@ -1,0 +1,18 @@
+{
+  "addresses" : [
+    {
+        "name": "service1",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50051",
+        "agent_port": "5051"
+    },
+    {
+        "name": "service2",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50052",
+        "agent_port": "5052"
+    }
+  ]
+}

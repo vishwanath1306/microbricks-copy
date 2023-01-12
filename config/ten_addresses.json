@@ -1,0 +1,74 @@
+{
+  "addresses" : [
+    {
+        "name": "service1",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50051",
+        "agent_port": "5051"
+    },
+    {
+        "name": "service2",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50052",
+        "agent_port": "5052"
+    },
+    {
+        "name": "service3",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50053",
+        "agent_port": "5053"
+    },
+    {
+        "name": "service4",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50054",
+        "agent_port": "5054"
+    },
+    {
+        "name": "service5",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50055",
+        "agent_port": "5055"
+    },
+    {
+        "name": "service6",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50056",
+        "agent_port": "5056"
+    },
+    {
+        "name": "service7",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50057",
+        "agent_port": "5057"
+    },
+    {
+        "name": "service8",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50058",
+        "agent_port": "5058"
+    },
+    {
+        "name": "service9",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50059",
+        "agent_port": "5059"
+    },
+    {
+        "name": "service10",
+        "deploy_addr": "0.0.0.0",
+        "hostname": "localhost",
+        "port": "50060",
+        "agent_port": "5060"
+    }
+  ]
+}

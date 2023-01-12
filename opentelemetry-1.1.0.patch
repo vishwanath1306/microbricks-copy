@@ -1,0 +1,26 @@
+diff --git a/exporters/jaeger/src/thrift_sender.cc b/exporters/jaeger/src/thrift_sender.cc
+index 770bb81..1b25f71 100644
+--- a/exporters/jaeger/src/thrift_sender.cc
++++ b/exporters/jaeger/src/thrift_sender.cc
+@@ -15,7 +15,7 @@ using namespace jaegertracing;
+ ThriftSender::ThriftSender(std::unique_ptr<Transport> &&transport)
+     : transport_(std::move(transport)),
+       protocol_factory_(new apache::thrift::protocol::TCompactProtocolFactory()),
+-      thrift_buffer_(new apache::thrift::transport::TMemoryBuffer())
++      thrift_buffer_(new apache::thrift::transport::TMemoryBuffer(transport_->MaxPacketSize()))
+ {}
+ 
+ int ThriftSender::Append(std::unique_ptr<JaegerRecordable> &&span) noexcept
+diff --git a/exporters/jaeger/src/udp_transport.cc b/exporters/jaeger/src/udp_transport.cc
+index 306a0e9..ea63743 100644
+--- a/exporters/jaeger/src/udp_transport.cc
++++ b/exporters/jaeger/src/udp_transport.cc
+@@ -19,7 +19,7 @@ UDPTransport::UDPTransport(const std::string &addr, uint16_t port)
+ 
+   endpoint_transport_ = std::shared_ptr<TTransport>(new TUDPTransport(addr, port));
+   endpoint_transport_->open();
+-  transport_ = std::shared_ptr<TTransport>(new TBufferedTransport(endpoint_transport_));
++  transport_ = std::shared_ptr<TTransport>(new TBufferedTransport(endpoint_transport_, max_packet_size_));
+   protocol_  = std::shared_ptr<TProtocol>(new TCompactProtocol(transport_));
+   agent_     = std::unique_ptr<AgentClient>(new AgentClient(protocol_));
+ }

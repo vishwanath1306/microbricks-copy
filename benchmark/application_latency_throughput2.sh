@@ -1,0 +1,3 @@
+OUTDIR=/local/hindsightexperiments/application_latency_throughput2
+OPENLOOP=400,800,1200,1600,2000,2400,2800,3200,3600,4000,4400,4800,5200,5600,6000,6400,6800,7200,7600,8000,8400,8800,9200,9600,10000,10400,10800,11200,11600,12000,12400,12800,13200,13600,14000,14400,14800,15200,15600,16000
+python3 application_overheads.py --nocompute $OUTDIR --repeat 1 --openloop=$OPENLOOP --clients=5 --closedloop=
