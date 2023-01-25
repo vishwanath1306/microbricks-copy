@@ -437,8 +437,14 @@ TraceStatus makeTrace(
   trace belongs to, and the triggers that fired it */
   for (auto &cmb : combined) {
     std::vector<TraceEntry> entries;
-    cmb->extractEntries(entries);
-
+    auto val = cmb->extractEntries(entries);
+    // if (val == TraceStatus::kPrematureEndOfSlice){
+    //   std::cout<<"Premature End of Slice"<<std::endl;
+    // }
+    std::cout<<entries.size()<<std::endl;
+    if(entries.size() > 2){
+      std::cout<<entries[1].payload<<std::endl;
+    }
     std::vector<int64_t> interval_attrs;
     findIntAttributes(entries, "Interval", interval_attrs);
     for (auto &interval : interval_attrs) {
@@ -635,7 +641,10 @@ void process(struct arguments args) {
       first = false;
     }
   }
-
+  for (auto &raw: buffers){
+    auto buff_string = raw->str();
+    std::cout<<"Buffer string: "<<buff_string<<std::endl;
+  }
   for (auto &raw : buffers) {
     delete raw;
   }
